@@ -1,3 +1,4 @@
+
 package com.tonmoy.onlinebookstore.config;
 
 import javax.persistence.EntityManager;
@@ -10,13 +11,14 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 
 @Configuration
 public class RepositoryConfig implements RepositoryRestConfigurer {
-	
+
 	@Autowired
 	private EntityManager entityManager;
 
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
-		config.exposeIdsFor(entityManager.getMetamodel().getManagedTypes().stream().map(Type::getJavaType).toArray(Class[]::new));
+		config.exposeIdsFor(
+				entityManager.getMetamodel().getManagedTypes().stream().map(Type::getJavaType).toArray(Class[]::new));
 	}
 
 }
